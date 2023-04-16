@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Produkty</title>
+</head>
+<body>
+<h2>Kategorie produktów</h2>
+
+<ul>
+    <li th:each="category: ${categories}">
+        <a th:href="|/lista?kategoria=${category}|" th:text="|${category.description}|"></a>
+    </li>
+</ul>
+<form action="/dodaj" method="post" th:object="${product}">
+    <input type="text" placeholder="Nazwa" th:field="*{name}">
+    <input type="text" placeholder="Cena" th:field="*{price}">
+    <select th:field="*{category}">
+        <option th:each="category: ${validCategories}"
+                th:value="|${category}|" th:text="|${category.description}|"></option>
+    </select>
+    <input type="submit" value="Dodaj">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista</title>
+    <style>
+        #headings {
+            color: dodgerblue;
+        }
+
+        #sumup {
+            color: blueviolet;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        table, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h2 th:text="|Lista produktów z kategorii ${category}|"></h2>
+
+<table>
+    <thead>
+    <tr id="headings">
+        <td>Nazwa</td>
+        <td>Cena</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product: ${productList}" th:object="${product}">
+        <td th:text="*{name}"></td>
+        <td th:text="*{price + ' zł'}"></td>
+    </tr>
+    <tr id="sumup">
+        <td>Suma</td>
+        <td th:text="${sum + ' zł'}"></td>
+    </tr>
+    </tbody>
+</table>
+<p><a href="/">Strona główna</a></p>
+
+</body>
+</html>
